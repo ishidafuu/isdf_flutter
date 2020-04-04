@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "isdf-git",
+    "staging": "isdf-git"
+  }
+}
