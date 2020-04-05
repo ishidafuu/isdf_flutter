@@ -11,6 +11,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: slack notification
+        uses: 8398a7/action-slack@v2
+        if: always()
+        with:
+          status: ${{ job.status }}
+          username: github-functions
+          icon_emoji: ':octocat:'
+          text: ":eyes: :eyes: :eyes: ビルドはじまるよ :eyes: :eyes: :eyes: :eyes:"
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Checkout the repository
         uses: actions/checkout@master
 
