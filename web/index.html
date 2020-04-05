@@ -2,14 +2,71 @@
 <!-- Copyright 2014 The Flutter Authors. All rights reserved.
 Use of this source code is governed by a BSD-style license that can be
 found in the LICENSE file. -->
+<html lang="ja">
 <html>
-    <head>
-        <title>Hello, World</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hello, World</title>
+    <link rel="shortcut icon" type="image/png" href="favicon.png"/>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+</head>
 
-        <!-- Favicon -->
-        <link rel="shortcut icon" type="image/png" href="favicon.png"/>
-    </head>
-    <body>
-        <script src="main.dart.js"></script>
-    </body>
+<body>
+<div id="firebaseui-auth-container"></div>
+<script src="/__/firebase/7.13.2/firebase-app.js"></script>
+<script src="/__/firebase/7.13.2/firebase-auth.js"></script>
+<script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
+
+<script type="text/javascript">
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyAyPpJ2_Q7W3dbgHbg8BTwCiRZGXM-LNmY",
+                authDomain: "isdf-git.firebaseapp.com",
+                databaseURL: "https://isdf-git.firebaseio.com",
+                projectId: "isdf-git",
+                storageBucket: "isdf-git.appspot.com",
+                messagingSenderId: "474286519096",
+                appId: "1:474286519096:web:89e5edab28e3dd054587cd"
+            };
+            print(firebaseConfig);
+
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+
+            // FirebaseUIインスタンス初期化
+            var ui = new firebaseui.auth.AuthUI(firebase.auth());
+
+            // FirebaseUIの各種設定
+            var uiConfig = {
+              callbacks: {
+                signInSuccess: function(currentUser, credential, redirectUrl) {
+                  // サインイン成功時のコールバック関数
+                  // 戻り値で自動的にリダイレクトするかどうかを指定
+                  return true;
+                },
+                uiShown: function() {
+                  // FirebaseUIウィジェット描画完了時のコールバック関数
+                  // 読込中で表示しているローダー要素を消す
+                  document.getElementById('loader').style.display = 'none';
+                }
+              },
+              // リダイレクトではなく、ポップアップでサインインフローを表示
+              signInFlow: 'popup',
+              signInSuccessUrl: 'main.html',
+              signInOptions: [
+                // サポートするプロバイダ(メールアドレス)を指定
+                firebase.auth.EmailAuthProvider.PROVIDER_ID,
+              ],
+              // Terms of service url.(サービス利用規約ページの)
+              tosUrl: ''
+            };
+
+            // FirebaseUI描画開始
+            ui.start('#firebaseui-auth-container', uiConfig);
+        </script>
+<div id="loader">Loading...</div>
+
+</body>
 </html>
