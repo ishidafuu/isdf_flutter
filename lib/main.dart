@@ -42,7 +42,7 @@ class FirstPage extends StatelessWidget{
               client.close();
             }
           },
-          child: Text('http'),
+          child: Text('http2'),
         ),
       ),
     );
