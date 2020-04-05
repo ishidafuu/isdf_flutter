@@ -30,14 +30,14 @@ jobs:
       - if: success()
         uses: pullreminders/slack-action@master
         with:
-          args: '{\"channel\":\"C010J4E21CG\", \"text\":\"success Build\"}'
+          args: '{\"channel\":\"C010J4E21CG\", \"text\":\"success Build!\"}'
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
       - if: failure()
         uses: pullreminders/slack-action@master
         with:
-          args: '{\"channel\":\"C010J4E21CG\", \"text\":\"failure Build\"}'
+          args: '{\"channel\":\"C010J4E21CG\", \"text\":\"failure Build!\"}'
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
@@ -64,14 +64,14 @@ jobs:
       - if: success()
         uses: pullreminders/slack-action@master
         with:
-          args: '{\"channel\":\"C010J4E21CG\", \"text\":\"success Deploy\"}'
+          args: '{\"channel\":\"C010J4E21CG\", \"text\":\"success Deploy!\"}'
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
       - if: failure()
         uses: pullreminders/slack-action@master
         with:
-          args: '{\"channel\":\"C010J4E21CG\", \"text\":\"failure Deploy\"}'
+          args: '{\"channel\":\"C010J4E21CG\", \"text\":\"failure Deploy!\"}'
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
