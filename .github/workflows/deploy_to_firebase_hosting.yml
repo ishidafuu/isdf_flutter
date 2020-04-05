@@ -43,6 +43,7 @@ jobs:
         uses: 8398a7/action-slack@v2
         if: success()
         with:
+          type: success
           status: ${{ job.status }}
           username: github-functions
           icon_emoji: ':octocat:'
@@ -55,6 +56,7 @@ jobs:
         uses: 8398a7/action-slack@v2
         if: failure()
         with:
+          type: failure
           status: ${{ job.status }}
           username: github-functions
           icon_emoji: ':octocat:'
@@ -88,6 +90,7 @@ jobs:
         uses: 8398a7/action-slack@v2
         if: success()
         with:
+          type: success
           status: ${{ job.status }}
           username: github-functions
           icon_emoji: ':octocat:'
@@ -100,6 +103,7 @@ jobs:
         uses: 8398a7/action-slack@v2
         if: failure()
         with:
+          type: failure
           status: ${{ job.status }}
           username: github-functions
           icon_emoji: ':octocat:'
