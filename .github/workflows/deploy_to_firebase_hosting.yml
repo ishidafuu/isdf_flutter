@@ -27,16 +27,14 @@ jobs:
           name: build
           path: build
 
-      - name: Send to Slack
-        if: success()
+      - if: success()
         uses: pullreminders/slack-action@master
         with:
           args: '{\"channel\":\"C010J4E21CG\", \"text\":\"success Build\"}'
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
-      - name: Send to Slack
-        if: failure()
+      - if: failure()
         uses: pullreminders/slack-action@master
         with:
           args: '{\"channel\":\"C010J4E21CG\", \"text\":\"failure Build\"}'
@@ -63,16 +61,14 @@ jobs:
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 
-      - name: Send to Slack
-        if: success()
+      - if: success()
         uses: pullreminders/slack-action@master
         with:
           args: '{\"channel\":\"C010J4E21CG\", \"text\":\"success Deploy\"}'
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
-      - name: Send to Slack
-        if: failure()
+      - if: failure()
         uses: pullreminders/slack-action@master
         with:
           args: '{\"channel\":\"C010J4E21CG\", \"text\":\"failure Deploy\"}'
