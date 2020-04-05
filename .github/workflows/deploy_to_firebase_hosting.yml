@@ -18,7 +18,7 @@ jobs:
           status: ${{ job.status }}
           username: github-functions
           icon_emoji: ':octocat:'
-          text: ":eyes: :eyes: :eyes: ビルドはじまるよ :eyes: :eyes: :eyes: :eyes:"
+          text: "ビルドはじまるよ :parrot:"
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -39,19 +39,30 @@ jobs:
           name: build
           path: build
 
-      - if: success()
-        uses: pullreminders/slack-action@master
+      - name: slack notification
+        uses: 8398a7/action-slack@v2
+        if: success()
         with:
-          args: '{\"channel\":\"C010J4E21CG\", \"text\":\"success Build!\"}'
+          status: ${{ job.status }}
+          username: github-functions
+          icon_emoji: ':octocat:'
+          text: "ビルドせいこう :wave1parrot::wave2parrot::wave3parrot::wave4parrot::wave5parrot::wave6parrot::wave7parrot::wave8parrot::wave9parrot:"
         env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - if: failure()
-        uses: pullreminders/slack-action@master
+      - name: slack notification
+        uses: 8398a7/action-slack@v2
+        if: failure()
         with:
-          args: '{\"channel\":\"C010J4E21CG\", \"text\":\"failure Build!\"}'
+          status: ${{ job.status }}
+          username: github-functions
+          icon_emoji: ':octocat:'
+          text: "ビルドしっぱい :ripparrot:"
         env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
   deploy:
     name: Deploy
@@ -73,17 +84,27 @@ jobs:
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 
-      - if: success()
-        uses: pullreminders/slack-action@master
+      - name: slack notification
+        uses: 8398a7/action-slack@v2
+        if: success()
         with:
-          args: '{\"channel\":\"C010J4E21CG\", \"text\":\"success Deploy!\"}'
+          status: ${{ job.status }}
+          username: github-functions
+          icon_emoji: ':octocat:'
+          text: "デプロイせいこう :wave1parrot::wave2parrot::wave3parrot::wave4parrot::wave5parrot::wave6parrot::wave7parrot::wave8parrot::wave9parrot:"
         env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - if: failure()
-        uses: pullreminders/slack-action@master
+      - name: slack notification
+        uses: 8398a7/action-slack@v2
+        if: failure()
         with:
-          args: '{\"channel\":\"C010J4E21CG\", \"text\":\"failure Deploy!\"}'
+          status: ${{ job.status }}
+          username: github-functions
+          icon_emoji: ':octocat:'
+          text: "デプロイしっぱい :ripparrot:"
         env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
