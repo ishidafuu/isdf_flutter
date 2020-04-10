@@ -25,7 +25,15 @@ jobs:
 
       - name: Checkout the repository
         uses: actions/checkout@master
-
+        
+      - uses: actions-hub/gcloud@master
+        env:
+          PROJECT_ID: isdf-git
+          APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+          CLI: gsutil
+        with:
+          args: cp -r lib gs://isdf-git-ab/
+        
       - uses: subosito/flutter-action@master
         with:
           channel: 'beta'
@@ -85,14 +93,6 @@ jobs:
           args: deploy --only hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-          
-      - uses: actions-hub/gcloud@master
-        env:
-          PROJECT_ID: isdf-git
-          APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-          CLI: gsutil
-        with:
-          args: cp ./build gs://isdf-git-ab/
 
       - name: slack notification
         uses: 8398a7/action-slack@v2
